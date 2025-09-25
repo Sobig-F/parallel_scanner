@@ -7,6 +7,7 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <stdlib.h>
 
 void scanner(char *hostname);
 void parallel_scanner(char *hostname);

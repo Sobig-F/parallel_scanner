@@ -51,7 +51,7 @@ void scanner(char *hostname) {
     inet_pton(AF_INET, ip, &arg.serv_addr.sin_addr);
     
     printf("Start scan\n");
-    for (int i = 1; i < 445; ++i) {
+    for (int i = START_PORTS; i < END_PORTS; ++i) {
         arg.port = i;
         scan_port(&arg);
     }
@@ -78,4 +78,6 @@ void parallel_scanner(char *hostname) {
     for (int i = START_PORTS; i < END_PORTS; ++i) {
         pthread_join(threads[i - 1], NULL);
     }
+
+    free(ip);
 }
