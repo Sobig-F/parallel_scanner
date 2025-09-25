@@ -5,13 +5,11 @@
 -h : Show this help message\n\
 -s <link> : Scan <link>\n")
 
-#define FLAGS "hs:"
+#define FLAGS "phs:"
 
 int main(int argc, char *argv[]) {
     char *hostname = NULL;
     int parse = 0;
-    struct hostent *infobyhost;
-    char *addr = NULL;
 
     while ((parse = getopt(argc, argv, FLAGS)) != -1) {
         switch (parse)
@@ -19,15 +17,9 @@ int main(int argc, char *argv[]) {
         case 'h':
             HELP_MESSAGE;
             break;
-        case 's':
+        case 'p':
             hostname = optarg;
-            scanner(hostname);
-            // printf("%s\n", hostname);
-            // infobyhost = gethostbyname(hostname);
-            // addr = inet_ntoa(*((struct in_addr *)infobyhost->h_addr_list[0]));
-            // printf("-");
-            // printf("%s", addr);
-            // scanner(hostname);
+            parallel_scanner(hostname);
             break;
         default:
             break;
